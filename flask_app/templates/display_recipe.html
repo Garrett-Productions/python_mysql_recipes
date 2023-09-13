@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ url_for('static',filename='/style.css') }}">
+    <title>Login</title>
+</head>
+<body>
+    <div class="d-flex justify-content-around align-items-center">
+        <h2 class="mx-2 p-1"> Welcome {{user.first_name}} </h2><br>
+        <a href="/recipes">Back to recipes</a> 
+        <a href="/logout">Logout</a>
+    </div><br>
+    <div class="d-flex justify-content-around align-items-center">
+        <h3 class="m-2 p-1"> {{recipe.name}} </h3>
+        <h3> Posted By: {{recipe.creator.first_name}} </h3> <!-- I need help getting this to render properly -->
+    </div>
+    <form action='/' method="post" class="p-3 col-6 mx-auto my-5 bg-dark text-light">
+    <div class="form-group">
+        <label for="description">Description: </label>
+        <input type="text" name="description"  value="{{ recipe.description }}" id="description" class="form-control">
+    </div>
+    <div class="form-group">
+        <label for="under_30">Under 30 Minutes?: </label>
+        <input type="text" name="under_30"  value="{{ recipe.under_30 }}" id="under_30" class="form-control">
+    </div>
+    <div class="form-group">
+        <label for="instructions">Instructions: </label>
+        <input type="text" name="instructions" value="{{ recipe.instructions }}" id="instructions" class="form-control">
+    </div>
+    <div class="form-group">
+        <label for="date_made">Date Made: </label>
+        <input type="text" name="created_at" value="{{ recipe.date_made }}" id="date_made" class="form-control">
+    </div>
+    <h4>Recipe's Likes</h4>
+    <div class="d-flex justify-content-between">
+        <ul>
+        {% for user in recipe.likes %}
+            <li>{{user.first_name}} {{user.last_name}} {{user.email}} </li>
+        {% endfor %}
+        </ul>
+        <span> Amount of Likes: {{recipe.likes|length}} </span>
+    </div>
+</body>
+</html>

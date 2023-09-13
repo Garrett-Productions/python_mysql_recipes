@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ url_for('static',filename='/style.css') }}">
+    <title>Recipes</title>
+</head>
+<body>
+    <div class="d-flex justify-content-around align-items-center">
+        <h2 class="mx-2 p-1"> Edit recipe below</h2><br/>
+        <a href="/recipes">Back to recipes</a> 
+        <a href="/logout">Logout</a>
+    </div>
+    {% with messages = get_flashed_messages(category_filter=['recipe']) %}
+        {% if messages %}
+            <div class="alert alert-warning" role="alert">
+                <ul>
+                {% for message in messages %}
+                    <li>{{message}}</li>
+                {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+    {% endwith %}
+    <form action='/update_recipe/{{ one_recipe.id }}' method="post" class="p-3 col-6 mx-auto my-5 bg-dark text-light">
+        <div class="form-group">
+            <label for="name"> Name: </label>
+            <input type="text" name="name" value="{{ one_recipe.name }}" id="name" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="description">Description: </label>
+            <input type="text" name="description"  value="{{ one_recipe.description }}" id="description" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="instructions">Instructions: </label>
+            <input type="text" name="instructions" value="{{ one_recipe.instructions }}" id="instructions" class="form-control">
+        </div>
+        <div class="form-group">
+            <p> Under 30 Mintues? </p>
+            <input type="radio" id="yes" name="under_30" value="Yes" 
+            {% if one_recipe.under_30 == 'Yes' %} 
+                checked 
+            {% endif %}>
+            <label for="under_30">Yes</label><br>
+            <input type="radio" id="no" name="under_30" value="No" 
+                {% if one_recipe.under_30 == 'No' %} 
+                    checked 
+                {% endif %}>
+            <label for="under_30">No</label><br>
+            <label for="date_made">Date Made</label>
+            <input type="date" id="date_made" name="date_made" value = {{ one_recipe.date_made }}>
+        </div>
+        <button type="submit" class="btn btn-success">Update</button>
