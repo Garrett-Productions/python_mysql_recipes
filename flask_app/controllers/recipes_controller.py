@@ -77,7 +77,6 @@ def update_recipe(id):
     return redirect('/recipes')
 
 
-
 @app.route('/recipes/<int:id>')
 def show_recipe(id):
     if 'user_id' not in session:
