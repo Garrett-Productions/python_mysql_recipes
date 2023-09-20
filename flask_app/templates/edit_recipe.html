@@ -44,12 +44,12 @@
             {% if one_recipe.under_30 == 'Yes' %} 
                 checked 
             {% endif %}>
-            <label for="under_30">Yes</label><br>
+            <label for="under_30">Yes</label><br/>
             <input type="radio" id="no" name="under_30" value="No" 
                 {% if one_recipe.under_30 == 'No' %} 
                     checked 
                 {% endif %}>
-            <label for="under_30">No</label><br>
+            <label for="under_30">No</label><br/>
             <label for="date_made">Date Made</label>
             <input type="date" id="date_made" name="date_made" value = {{ one_recipe.date_made }}>
         </div>
