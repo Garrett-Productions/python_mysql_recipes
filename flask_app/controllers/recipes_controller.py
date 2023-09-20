@@ -49,7 +49,7 @@ def create_recipe():
 @app.route('/recipes/edit/<int:id>')
 def edit_recipe(id):
     if 'user_id' not in session:
-        return redirect('/logout') #i need to fix these validations and edit my stuff and dsubmit the assignemnt 
+        return redirect('/logout') 
     data = {
         "id": session['user_id']
     }
