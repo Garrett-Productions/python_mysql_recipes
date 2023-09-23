@@ -42,7 +42,7 @@
             <li>{{user.first_name}} {{user.last_name}} {{user.email}} </li>
         {% endfor %}
         </ul>
-        {% for one_recipe in recipe|map %}
+        {% for one_recipe in recipe|map(attribute='name') %}
             <li>{{one_recipe.name}}</li>
         {% endfor %}
         <span> Amount of Likes: {{recipe.likes|length}} </span>
