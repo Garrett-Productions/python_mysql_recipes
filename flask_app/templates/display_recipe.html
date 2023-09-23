@@ -42,9 +42,9 @@
             <li>{{user.first_name}} {{user.last_name}} {{user.email}} </li>
         {% endfor %}
         </ul>
-        {% for one_recipe in recipe.likes|map(attribute='id') %}
+        <!-- {% for one_recipe in recipe.likes|map(attribute='id') %}
             <li>{{one_recipe.first_name}}</li>
-        {% endfor %}
+        {% endfor %} -->
         <span> Amount of Likes: {{recipe.likes|length}} </span>
     </div>
 </body>
