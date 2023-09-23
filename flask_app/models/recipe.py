@@ -49,6 +49,7 @@ class Recipe:
         query = "DELETE FROM likes WHERE user_id = %(user_id)s AND recipe_id = %(recipe_id)s"
         return connectToMySQL(db).query_db(query,data)
     
+    #lets try this method in cars
     @classmethod
     def get_with_likes(cls,id):
         query = """
@@ -56,7 +57,7 @@ class Recipe:
             LEFT JOIN likes ON recipes.id = likes.recipe_id
             LEFT JOIN users ON likes.user_id = users.id
             JOIN users AS creator ON recipes.user_id = creator.id
-            WHERE recipes.id = %(id)s;
+            WHERE recipes.id = %(id)s; 
             """
 
         results = connectToMySQL(db).query_db(query, {'id':id})
