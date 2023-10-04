@@ -103,6 +103,7 @@ def like(id):
         "recipe_id": id,
         "user_id": session['user_id']
     }
+    print(data)
     Recipe.insert_like(data)
     return redirect('/recipes')
 

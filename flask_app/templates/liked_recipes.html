@@ -13,23 +13,25 @@
     <div class="d-flex justify-content-around">
         <h4> All posted recipes<h4>
         <a href='/recipes/new' class="my-3 "> Create |</a>
+        <a href="/recipes">Back to recipes |</a> 
+
         <a href='/logout' class="my-3 p-2"> Logout </a>
     </div>
     <table class="table table-secondary mx-5 w-75 ">
         <thead>
             <tr>
-                <th scope="col">Kept Recipes</th>
+                <th scope="col">Liked Recipes</th>
             </tr>
         </thead>
         <tbody>
-            <!-- {% for recipe in recipe.kept_recipes %}
-                {% if recipe.id == recipe.kept_recipes.user_id in recipe.kept_recipes|map(attribute='id')%}
+            {% for recipe in recipe.likes %}
+                {% if recipe.id == recipe.likes.user_id in recipe.likes|map(attribute='id')%}
                 <tr>
                     <td>
                         {{recipe.name}}
                     </td>
                 {% endif %}
-            {% endfor %} -->
+            {% endfor %}
                 </tr>
         </tbody>
     </table>
