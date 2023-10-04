@@ -16,6 +16,7 @@ class Recipe:
         self.date_made = db_data['date_made']
         self.creator = None #kind of like our empty list
         self.likes = []
+        self.kept_recipes = []
         self.created_at = db_data['created_at']
         self.updated_at = db_data['updated_at']
 
@@ -150,6 +151,10 @@ class Recipe:
         query = "UPDATE recipes SET user_id=%(user_id)s, name=%(name)s, description=%(description)s, instructions=%(instructions)s, under_30=%(under_30)s, date_made=%(date_made)s, updated_at = NOW() WHERE id = %(id)s;"
         return connectToMySQL(db).query_db(query,data)
 
+    @classmethod
+    def keep_recipe(cls,data):
+        query = "INSERT INTO kept_recipes (user_id, recipe_id) VALUES (%(user_id)s, %(recipe_id)s)"
+        return connectToMySQL(db).query_db(query,data)  
 
     @classmethod
     def delete_recipe(cls,data):
