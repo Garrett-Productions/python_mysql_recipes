@@ -24,11 +24,11 @@
             </tr>
         </thead>
         <tbody>
-            {% for recipe in recipe.likes %}
-                {% if recipe.id == recipe.likes.user_id in recipe.likes|map(attribute='id')%}
+            {% for one_recipe in recipe.likes %}
+                {% if one_recipe.id == recipe.likes.user_id in recipe.likes|map(attribute='id')%}
                 <tr>
                     <td>
-                        {{recipe.name}}
+                        {{one_recipe.name}}
                     </td>
                 {% endif %}
             {% endfor %}
