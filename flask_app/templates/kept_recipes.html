@@ -22,11 +22,15 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>
-                    Kept recipes here with loop
-                </td>
-            </tr>
+            {% for recipe in recipe.kept_recipes %}
+                {% if recipe.id == recipe.kept_recipes.user_id in recipe.kept_recipes|map(attribute='id')%}
+                <tr>
+                    <td>
+                        {{recipe.name}}
+                    </td>
+                {% endif %}
+            {% endfor %}
+                </tr>
         </tbody>
     </table>
 </body>
