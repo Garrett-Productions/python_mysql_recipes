@@ -88,8 +88,35 @@ class Recipe:
                     }))
             return recipe
         return None #if returns none we know theres an issue, we should be getting back that row
-    
-    
+
+    @classmethod
+    def get_liked_recipes(cls,id):
+        query = """
+            SELECT * FROM recipes
+            LEFT JOIN likes ON recipes.id = likes.recipe_id
+            JOIN users ON recipes.user_id = users.id
+            WHERE likes.user_id = %(id)s; 
+            """
+        results = connectToMySQL(db).query_db(query, {'id':id})
+        if not results:
+            return None
+        recipe_list =[]
+        print(recipe_list)
+        for row in results:
+            each_recipe = cls(row)
+            user_data = {
+                "id": row['users.id'],
+                "first_name" : row['first_name'],
+                "last_name" : row['last_name'],
+                "email" : row['email'],
+                "password" : row['password'],
+                "created_at" : row['users.created_at'],
+                "updated_at" : row['users.updated_at']
+            }
+            each_recipe.creator = user.User(user_data)
+            recipe_list.append(each_recipe)
+        return recipe_list
+
     @classmethod
     def get_one(cls, data):
         query = "SELECT * FROM recipes JOIN users on recipes.user_id WHERE user_id = users.id;"

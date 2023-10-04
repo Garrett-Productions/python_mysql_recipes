@@ -24,16 +24,17 @@
             </tr>
         </thead>
         <tbody>
-            {% for one_recipe in recipe.likes %}
-                {% if one_recipe.id == recipe.likes.user_id in recipe.likes|map(attribute='id')%}
+            {% for one_recipe in recipes %}
                 <tr>
                     <td>
                         {{one_recipe.name}}
+                        {{one_recipe.description}}
+                        {{one_recipe.creator.first_name}}
                     </td>
-                {% endif %}
-            {% endfor %}
                 </tr>
+            {% endfor %}
         </tbody>
     </table>
 </body>
 </html>
+

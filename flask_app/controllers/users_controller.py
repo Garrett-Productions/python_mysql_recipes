@@ -47,7 +47,7 @@ def logged_recipes(id):
         "id": session['user_id']
     }
     user=User.get_by_id(data)
-    return render_template("liked_recipes.html", recipe = Recipe.get_with_likes(id), user = user)
+    return render_template("liked_recipes.html", recipes = Recipe.get_liked_recipes(id), user = user)
 
 @app.route('/logout')
 def logout():
