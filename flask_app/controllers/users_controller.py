@@ -39,6 +39,15 @@ def login():
     session['user_id'] = user.id
     return redirect('/recipes')
 
+@app.route('/user/<int:id>')
+def logged_recipes(id):
+    if 'user_id' not in session:
+        return redirect('/logout')
+    data = {
+        "id": session['user_id']
+    }
+    user=User.get_by_id(data)
+    return render_template("liked_recipes.html", recipe = Recipe.get_with_likes(id), user = user)
 
 @app.route('/logout')
 def logout():

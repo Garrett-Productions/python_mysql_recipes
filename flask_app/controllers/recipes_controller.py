@@ -106,16 +106,16 @@ def like(id):
     Recipe.insert_like(data)
     return redirect('/recipes')
 
-@app.route('/kept_recipes/<int:id>')
-def keep_recipes(id):
-    if 'user_id' not in session:
-        return redirect('/logout')
-    data = {
-        "recipe_id": id,
-        "user_id": session['user_id']
-    }
-    Recipe.keep_recipe(data)
-    return redirect('/dashboard')
+# @app.route('/kept_recipes/<int:id>')
+# def keep_recipes(id):
+#     if 'user_id' not in session:
+#         return redirect('/logout')
+#     data = {
+#         "recipe_id": id,
+#         "user_id": session['user_id']
+#     }
+#     Recipe.keep_recipe(data)
+#     return redirect('/recipes')
 
 @app.route ('/delete_recipe/<int:id>')
 def delete_recipe(id):
