@@ -53,3 +53,5 @@ def logged_recipes(id):
 def logout():
     session.clear()
     return redirect('/')
+
+#SO STOKED ON THIS PROJECT
